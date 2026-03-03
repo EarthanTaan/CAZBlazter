@@ -1,0 +1,60 @@
+using UnityEditor.ShaderGraph;
+using UnityEditor.Timeline;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInput : MonoBehaviour
+{
+    public static PlayerInput Instance { get; private set; }
+
+    [Header("Character Input Values")]
+    public Vector2 move;
+    public Vector2 look;
+    public bool jump;
+    public bool sprint;
+
+    [Header("Mouse Cursor Settings")]
+    public bool cursorLocked = true;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    public void OnMove(InputValue value)
+    {
+        MoveInput(value.Get<Vector2>());
+    }
+    public void OnLook(InputValue value)
+    {
+        LookInput(value.Get<Vector2>());
+    }
+    public void OnJump(InputValue value)
+    {
+        JumpInput(value.isPressed);
+    }
+    public void OnSprint(InputValue value)
+    {
+        SprintInput(value.isPressed);
+    }
+
+    private void MoveInput(Vector2 moveInput) => move = moveInput;
+    private void LookInput(Vector2 lookInput) => look = lookInput;
+    private void JumpInput(bool jumpInput) => jump = jumpInput;
+    private void SprintInput(bool sprintInput) => sprint = sprintInput;
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        SetCursorState(cursorLocked);
+    }
+
+    private void SetCursorState(bool newState)
+    {
+        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+}
