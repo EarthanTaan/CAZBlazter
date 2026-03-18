@@ -10,7 +10,7 @@ public class HouseGenerator : MonoBehaviour
         public bool[] status = new bool[4]; // 0: up, 1: right, 2: down, 3: left
     }
 
-    public Vector2 size;
+    public Vector2Int size;
     public int startPos = 0;
     public GameObject room;
     public Vector2 offset;
@@ -23,18 +23,14 @@ public class HouseGenerator : MonoBehaviour
         MazeGenerator();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void GenerateDungeon()
     {
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
             {
-                Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
+                Cell currentCell = board[(i + j * size.x)];
+
                 if (currentCell.visited)
                 {
                     var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();

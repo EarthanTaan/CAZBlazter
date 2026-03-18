@@ -13,6 +13,4 @@ public class RoomBehavior : MonoBehaviour
             walls[i].SetActive(!status[i]);
         }
     }
-
-
 }
