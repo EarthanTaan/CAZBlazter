@@ -52,13 +52,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "JournalUI",
+                    "name": "ToggleJournal",
                     "type": "Button",
                     "id": "0c1fc970-1748-47e2-97b3-1cf81b003b59",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -322,7 +322,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "JournalUI",
+                    "action": "ToggleJournal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

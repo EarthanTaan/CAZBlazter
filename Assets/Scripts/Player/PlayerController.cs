@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour
         UpdateGravity();
         PlayerJump();
         GroundedCheck();
-        JournalPage();
 
         if (transform.position.y < -10f) // If player falls below a certain height, reset position
         {
@@ -135,18 +134,6 @@ public class PlayerController : MonoBehaviour
         characterController.Move(Vector3.up * velocity.y * Time.deltaTime);
     }
 
-    void JournalPage()
-    {
-        if (playerInput.journal)
-        {
-            JournalUI.SetActive(true);
-        }
-        else
-        {
-            JournalUI.SetActive(false);
-        }
-    }
-
     void PlayerJump()
     {
         if (jumpCooldownTimer > 0)
@@ -195,5 +182,13 @@ public class PlayerController : MonoBehaviour
         else Gizmos.color = transparentRed;
 
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z), groundedRadius);
+    }
+
+    public void OnToggleJournal(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            JournalUI.SetActive(!JournalUI.activeSelf);
+        }
     }
 }
