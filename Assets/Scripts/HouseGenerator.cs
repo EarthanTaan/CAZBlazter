@@ -1,23 +1,45 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static HouseGenerator;
 
 public class HouseGenerator : MonoBehaviour
 {
     public class Cell
     {
         public bool visited = false;
-        public bool[] status = new bool[4]; // 0: up, 1: right, 2: down, 3: left
+        public bool[] status = new bool[4]; // 0 - Up 1 -Down 2 - Right 3- Left
+    }
+
+    [System.Serializable]
+    public class Rule
+    {
+        public GameObject room;
+        public Vector2Int minPosition;
+        public Vector2Int maxPosition;
+
+        public bool obligatory;
+
+        public int ProbabilityOfSpawning(int x, int y)
+        {
+            // 0 - cannot spawn 1 - can spawn 2 - HAS to spawn
+
+            if (x >= minPosition.x && x <= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
+            {
+                return obligatory ? 2 : 1;
+            }
+
+            return 0;
+        }
     }
 
     public Vector2Int size;
     public int startPos = 0;
-    public GameObject room;
+    public Rule[] rooms;
     public Vector2 offset;
 
     List<Cell> board;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called before the first frame update
     void Start()
     {
         MazeGenerator();
@@ -25,44 +47,79 @@ public class HouseGenerator : MonoBehaviour
 
     void GenerateDungeon()
     {
-        for (int i = 0; i < size.x; i++)
-        {
-            for (int j = 0; j < size.y; j++)
+        for (int x = 0; x < size.x; x++) for (int y = 0; y < size.y; y++)
             {
-                Cell currentCell = board[(i + j * size.x)];
-
+                Cell currentCell = board[(x + y * size.x)];
                 if (currentCell.visited)
                 {
-                    var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
-                    newRoom.UpdateRoom(currentCell.status);
-                    newRoom.name += " " + i + "-" + j;
+                    int randomRoom = -1;
+                    List<int> availableRooms = new List<int>();
+
+                    for (int k = 0; k < rooms.Length; k++)
+                    {
+                        int p = rooms[k].ProbabilityOfSpawning(x, y);
+
+                        if (p == 2)
+                        {
+                            randomRoom = k;
+                            break;
+                        }
+                        else if (p == 1)
+                        {
+                            availableRooms.Add(k);
+                        }
+                    }
+
+                    if (randomRoom == -1)
+                    {
+                        if (availableRooms.Count > 0)
+                        {
+                            randomRoom = availableRooms[Random.Range(0, availableRooms.Count)];
+                        }
+                        else
+                        {
+                            randomRoom = 0;
+                        }
+                    }
+                    //Create Rooms based on the cell's status and the rules we've set up for room spawning.
+                    var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(x * offset.x, 0, -y * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
+                    newRoom.DecideRoomWallState(currentCell.status);
+                    newRoom.name += " " + x + "-" + y;
+
                 }
             }
-        }
+
     }
 
     void MazeGenerator()
     {
         board = new List<Cell>();
-        for (int i = 0; i < size.x; i++)
+
+        for (int i = 0; i < size.x; i++) for (int j = 0; j < size.y; j++)
         {
-            for (int j = 0; j < size.y; j++)
-            {
-                board.Add(new Cell());
-            }
+            board.Add(new Cell());
         }
+
         int currentCell = startPos;
+
         Stack<int> path = new Stack<int>();
+
         int k = 0;
+
         while (k < 1000)
         {
             k++;
+
             board[currentCell].visited = true;
+
             if (currentCell == board.Count - 1)
             {
                 break;
             }
+
+            //Check the cell's neighbors
             List<int> neighbors = CheckNeighbors(currentCell);
+
             if (neighbors.Count == 0)
             {
                 if (path.Count == 0)
@@ -77,9 +134,12 @@ public class HouseGenerator : MonoBehaviour
             else
             {
                 path.Push(currentCell);
+
                 int newCell = neighbors[Random.Range(0, neighbors.Count)];
+
                 if (newCell > currentCell)
                 {
+                    //down or right
                     if (newCell - 1 == currentCell)
                     {
                         board[currentCell].status[2] = true;
@@ -95,7 +155,7 @@ public class HouseGenerator : MonoBehaviour
                 }
                 else
                 {
-
+                    //up or left
                     if (newCell + 1 == currentCell)
                     {
                         board[currentCell].status[3] = true;
@@ -108,9 +168,10 @@ public class HouseGenerator : MonoBehaviour
                         currentCell = newCell;
                         board[currentCell].status[1] = true;
                     }
-
                 }
+
             }
+
         }
         GenerateDungeon();
     }
@@ -119,29 +180,30 @@ public class HouseGenerator : MonoBehaviour
     {
         List<int> neighbors = new List<int>();
 
-        //Check up neighbor, make sure it's not on the top edge and that it has been visited
-        if (cell - size.x >= 0 && !board[Mathf.FloorToInt(cell - size.x)].visited)
+        //check up neighbor
+        if (cell - size.x >= 0 && !board[(cell - size.x)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell - size.x));
+            neighbors.Add((cell - size.x));
         }
 
-        //Check down neighbor, make sure it's not on the bottom edge and that it has been visited
-        if (cell + size.x < board.Count && !board[Mathf.FloorToInt(cell + size.x)].visited)
+        //check down neighbor
+        if (cell + size.x < board.Count && !board[(cell + size.x)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell + size.x));
+            neighbors.Add((cell + size.x));
         }
 
-        //Check right neighbor, make sure it's not on the right edge and that it has been visited
-        if ((cell + 1) % size.x != 0 && !board[Mathf.FloorToInt(cell + 1)].visited)
+        //check right neighbor
+        if ((cell + 1) % size.x != 0 && !board[(cell + 1)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell + 1));
+            neighbors.Add((cell + 1));
         }
 
-        //Check left neighbor, make sure it's not on the left edge and that it has been visited
-        if (cell % size.x != 0 && !board[Mathf.FloorToInt(cell - 1)].visited)
+        //check left neighbor
+        if (cell % size.x != 0 && !board[(cell - 1)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell - 1));
+            neighbors.Add((cell - 1));
         }
+
         return neighbors;
     }
 }

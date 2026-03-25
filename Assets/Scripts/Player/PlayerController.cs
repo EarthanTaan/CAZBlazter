@@ -43,12 +43,15 @@ public class PlayerController : MonoBehaviour
     public float sprintBobAmp = 4f;
     public float sprintBobFreq = 3f;
 
+    [SerializeField] GameObject JournalUI;
+
     private CharacterController characterController;
     private PlayerInput playerInput;
     private Vector3 velocity;
     private bool isGrounded;
     private float jumpCooldownTimer;
     private float cameraPitch;
+    Vector3 spawnPos;
 
     void Awake()
     {
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //originalFov = virtualCamera.Lens.FieldOfView;
+        spawnPos = transform.position;
     }
 
     void Update()
@@ -68,6 +72,13 @@ public class PlayerController : MonoBehaviour
         UpdateGravity();
         PlayerJump();
         GroundedCheck();
+        JournalPage();
+
+        if (transform.position.y < -10f) // If player falls below a certain height, reset position
+        {
+            transform.position = spawnPos;
+            velocity = Vector3.zero; // Reset velocity to prevent falling through the floor
+        }
     }
 
     private void LateUpdate()
@@ -124,6 +135,18 @@ public class PlayerController : MonoBehaviour
         characterController.Move(Vector3.up * velocity.y * Time.deltaTime);
     }
 
+    void JournalPage()
+    {
+        if (playerInput.journal)
+        {
+            JournalUI.SetActive(true);
+        }
+        else
+        {
+            JournalUI.SetActive(false);
+        }
+    }
+
     void PlayerJump()
     {
         if (jumpCooldownTimer > 0)
@@ -143,7 +166,6 @@ public class PlayerController : MonoBehaviour
         {
             playerInput.jump = false;
         }
-
     }
 
     public void ChangeFov(float fieldOfView)

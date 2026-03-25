@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
+    public bool journal;
 
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
@@ -42,11 +43,16 @@ public class PlayerInput : MonoBehaviour
     {
         SprintInput(value.isPressed);
     }
+    public void OnJournalUI(InputValue value)
+    {
+        JournalInput(value.isPressed);
+    }
 
     private void MoveInput(Vector2 moveInput) => move = moveInput;
     private void LookInput(Vector2 lookInput) => look = lookInput;
     private void JumpInput(bool jumpInput) => jump = jumpInput;
     private void SprintInput(bool sprintInput) => sprint = sprintInput;
+    private void JournalInput(bool journalInput) => journal = journalInput;
 
     private void OnApplicationFocus(bool hasFocus)
     {
