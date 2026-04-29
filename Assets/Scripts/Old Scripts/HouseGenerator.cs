@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HouseGenerator : MonoBehaviour
@@ -8,7 +9,12 @@ public class HouseGenerator : MonoBehaviour
     {
         public bool visited = false;
         public bool[] status = new bool[4]; // 0 - Up 1 -Down 2 - Right 3- Left
+        public int x, y;
+        public int directionFromPreviousCell = -1; // 0 - Up, 1 - Down, 2 - Right, 3 - Left
+        public Direction directionFromPreviousCellEnum;
     }
+
+
 
     [System.Serializable]
     public class Rule
@@ -83,7 +89,7 @@ public class HouseGenerator : MonoBehaviour
                     }
                     //Create Rooms based on the cell's status and the rules we've set up for room spawning.
                     var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(x * offset.x, 0, -y * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
-                    newRoom.DecideRoomWallState(currentCell.status);
+                    newRoom.DecideRoomWallState(currentCell.status, RoomBehavior.Direction.Up);
                     newRoom.name += " " + x + "-" + y;
 
                 }
@@ -142,15 +148,20 @@ public class HouseGenerator : MonoBehaviour
                     //down or right
                     if (newCell - 1 == currentCell)
                     {
+                        //board[currentCell].status[2] = true;
                         board[currentCell].status[2] = true;
+                        board[newCell].directionFromPreviousCell = 2;
                         currentCell = newCell;
                         board[currentCell].status[3] = true;
+                        board[currentCell].directionFromPreviousCell = 3;
                     }
                     else
                     {
                         board[currentCell].status[1] = true;
+                            board[newCell].directionFromPreviousCell = 1;
                         currentCell = newCell;
                         board[currentCell].status[0] = true;
+                        board[currentCell].directionFromPreviousCell = 0;
                     }
                 }
                 else
@@ -159,14 +170,18 @@ public class HouseGenerator : MonoBehaviour
                     if (newCell + 1 == currentCell)
                     {
                         board[currentCell].status[3] = true;
+                        board[newCell].directionFromPreviousCell = 3;
                         currentCell = newCell;
                         board[currentCell].status[2] = true;
+                        board[currentCell].directionFromPreviousCell = 2;
                     }
                     else
                     {
                         board[currentCell].status[0] = true;
+                        board[newCell].directionFromPreviousCell = 0;
                         currentCell = newCell;
                         board[currentCell].status[1] = true;
+                        board[currentCell].directionFromPreviousCell = 1;
                     }
                 }
 
