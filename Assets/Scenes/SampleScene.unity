@@ -5892,7 +5892,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1904240900}
+  m_Mesh: {fileID: 854148541}
 --- !u!33 &84575972
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -19487,10 +19487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &328347768
 GameObject:
   m_ObjectHideFlags: 0
@@ -20126,10 +20125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &335473198
 GameObject:
   m_ObjectHideFlags: 0
@@ -20402,10 +20400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &337378775
 GameObject:
   m_ObjectHideFlags: 0
@@ -21388,10 +21385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &373664054
 GameObject:
   m_ObjectHideFlags: 0
@@ -22278,8 +22274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c99f479a0cb4164798a54da8945db6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appliance
-  type: 0
-  isClean: 1
   value: 6
 --- !u!1 &386456286
 GameObject:
@@ -35660,10 +35654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &599222627
 GameObject:
   m_ObjectHideFlags: 0
@@ -38646,10 +38639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &703404533
 GameObject:
   m_ObjectHideFlags: 0
@@ -47480,8 +47472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c99f479a0cb4164798a54da8945db6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appliance
-  type: 0
-  isClean: 1
   value: 4
 --- !u!1 &840970922
 GameObject:
@@ -48265,8 +48255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c99f479a0cb4164798a54da8945db6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appliance
-  type: 0
-  isClean: 1
   value: 5
 --- !u!1 &852816076
 GameObject:
@@ -50671,10 +50659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &899906242
 GameObject:
   m_ObjectHideFlags: 0
@@ -51337,10 +51324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &916442868
 GameObject:
   m_ObjectHideFlags: 0
@@ -55947,10 +55933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &982979732
 GameObject:
   m_ObjectHideFlags: 0
@@ -58596,10 +58581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1031738961
 GameObject:
   m_ObjectHideFlags: 0
@@ -60437,10 +60421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1078548682
 GameObject:
   m_ObjectHideFlags: 0
@@ -74965,7 +74948,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1888237301}
+  m_Mesh: {fileID: 715833990}
 --- !u!33 &1307531133
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -79280,10 +79263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1355435306
 GameObject:
   m_ObjectHideFlags: 0
@@ -84367,10 +84349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1449804408
 GameObject:
   m_ObjectHideFlags: 0
@@ -95571,10 +95552,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1676357694
 GameObject:
   m_ObjectHideFlags: 0
@@ -102420,10 +102400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1776444762
 GameObject:
   m_ObjectHideFlags: 0
@@ -109082,10 +109061,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &1871966728
 GameObject:
   m_ObjectHideFlags: 0
@@ -123298,10 +123276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!43 &2123994638
 Mesh:
   m_ObjectHideFlags: 0
@@ -135209,8 +135186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c99f479a0cb4164798a54da8945db6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Appliance
-  type: 0
-  isClean: 1
   value: 2
 --- !u!33 &5466594946195672187
 MeshFilter:
@@ -140443,10 +140418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f802b8dcc3aab74fad4802935fa17b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyRoom
-  OpenUp: 0
-  OpenDown: 0
-  OpenRight: 0
-  OpenLeft: 0
+  airValue: 10
+  WallItems: []
+  GroundItems: []
 --- !u!1 &7777266216819059266
 GameObject:
   m_ObjectHideFlags: 0

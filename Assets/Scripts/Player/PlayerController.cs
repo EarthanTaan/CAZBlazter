@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
         float targetSpeed = playerInput.sprint ? sprintSpeed : walkSpeed;
-        Debug.Log($"Target Speed: {targetSpeed} ");
+        //Debug.Log($"Target Speed: {targetSpeed} ");
 
         if (moveDirection != Vector3.zero)
         {
